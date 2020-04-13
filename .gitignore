@@ -1,0 +1,7 @@
+# README
+*.md
+
+# C files
+*.o
+*~
+test
