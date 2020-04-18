@@ -10,7 +10,7 @@
 #define NTESTS 3
 #define NITER 1000
 
-#define ARRAYSIZE 100000
+#define ARRAYSIZE 1000000
 
 double get_elapsed_time(struct timespec *start, struct timespec *end) {
   double delta_s = end->tv_sec - start->tv_sec;
@@ -43,8 +43,7 @@ bool check_if_array_is_sorted(int *array) {
 
 int main() {
   struct timespec start, end;
-  volatile int fibarg =
-      20; // Each volatile variable read has a corresponding memory access.
+  volatile int fibarg = 20; // Each volatile variable read has a corresponding memory access.
   int return_value = 0;
   double tests[NTESTS];
 
@@ -62,7 +61,7 @@ int main() {
   }
 
   qsort(tests, NTESTS, sizeof(double), compare);
-  printf("Fib(%d): Time elapsed is %f seconds.\n", fibarg, tests[NTESTS / 2]);
+  printf("Recursive Fib(%d) = %d: Time elapsed is %f seconds.\n", fibarg, return_value, tests[NTESTS / 2]);
 
   // Test quicksort function
   int *test_array = generate_random_numbers_array(ARRAYSIZE);

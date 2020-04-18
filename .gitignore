@@ -5,3 +5,6 @@
 *.o
 *~
 test
+
+# Python files
+__pycache__/
