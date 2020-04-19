@@ -70,17 +70,18 @@ int main() {
   free(test_array);
 
   for (int i = 0; i < NTESTS; ++i) {
-    clock_gettime(CLOCK_MONOTONIC, &start);
     int *array = generate_random_numbers_array(ARRAYSIZE);
+    clock_gettime(CLOCK_MONOTONIC, &start);
     quicksort(array, 0, ARRAYSIZE - 1);
-    free(array);
     clock_gettime(CLOCK_MONOTONIC, &end);
+    free(array);
+
 
     tests[i] = get_elapsed_time(&start, &end) / NITER;
   }
 
   qsort(tests, NTESTS, sizeof(double), compare);
-  printf("Quicksort: Time elapsed is %f seconds.\n", tests[NTESTS / 2]);
+  printf("Quicksort for %d elements array: Time elapsed is %f seconds.\n", ARRAYSIZE, tests[NTESTS / 2]);
 
   return 0;
 }
