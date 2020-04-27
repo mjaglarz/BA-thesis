@@ -17,7 +17,7 @@ c_ops: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
 	./c_ops
 
-.PHONY: integers floats python clean
+.PHONY: py_ops integers floats clean
 
 py_ops:
 	python3 basic_operations.py

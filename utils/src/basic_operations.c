@@ -48,6 +48,7 @@ int main() {
   path[strrchr(path, '/') - path] = '\0';
   path[strrchr(path, '/') - path + 1] = '\0';
   strcat(path, "results/basic_operations_c.txt");
+
   fd = fopen(path, "w");
   run(fd);
   fclose(fd);
