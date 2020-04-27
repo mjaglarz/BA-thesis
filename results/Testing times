@@ -1,0 +1,85 @@
+sleep(100)
+C:
+1. 100.001890 seconds
+2. 100.003826 seconds.
+
+Python:
+1. 100.005077148 seconds
+2. 100.003106386 seconds
+
+
+For 100 sleep(1)
+C: 
+1. 100.265854 seconds
+2. 100.287639 seconds
+3. 100.273333 seconds
+
+Python: - do testowania
+1. 100.26336435500001 seconds
+2. 100.281505747 seconds
+
+
+For 10000000 add operation
+C:
+1. 0.021383 seconds
+2. 0.020970 seconds
+
+Python
+1. 1.4976393449999996 seconds
+2. 1.1211779039999996 seconds
+
+
+For 1000 add operation
+C:
+1. 0.000002 seconds
+2. 0.000002 seconds
+
+Python:
+1. 0.0001445570000004892 seconds
+2. 0.00014659599999866657 seconds
+
+
+Jeśli chodzi o if w fibonaccim dla C:
+bez
+0.000047
+0.000049
+0.000046
+
+z
+0.000048 
+0.000051 
+0.000046
+0.000052
+0.000045
+0.000046
+
+C: 
+Recursive Fib(20) = 6765: Time elapsed is 0.000052 seconds.
+Quicksort for 1000000 elements array: Time elapsed is 0.000151 seconds.
+
+Python:
+Recursive Fib(20) = 6765: Time elapsed is 0.003124859834 seconds.
+Quicksort for 1000000 elements array: Time elapsed is 0.0046356272959999995 seconds.
+
+Fibonacci - C 60 razy szybsze 
+Quicksort - C 30 razy szybsze
+
+PYTHON
+TERAZ dla double
+1. Quicksort for 1000000 elements array: Time elapsed is 0.006109482759999999 seconds.
+2. Quicksort for 1000000 elements array: Time elapsed is 0.0060524245810000005 seconds.
+3. Quicksort for 1000000 elements array: Time elapsed is 0.006322334625 seconds.
+
+Jeszcze raz dla int
+1. Quicksort for 1000000 elements array: Time elapsed is 0.005400558229999998 seconds.
+2. Quicksort for 1000000 elements array: Time elapsed is 0.006053752459000002 seconds.
+3. Quicksort for 1000000 elements array: Time elapsed is 0.004860654074999999 seconds.
+
+C 
+dla int 
+1. Quicksort for 1000000 elements array: Time elapsed is 0.000148 seconds.
+2. Quicksort for 1000000 elements array: Time elapsed is 0.000152 seconds.
+3. Quicksort for 1000000 elements array: Time elapsed is 0.000152 seconds.
+
+dla doubli sie sypie
+bo tak

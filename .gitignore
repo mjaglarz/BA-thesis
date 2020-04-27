@@ -5,6 +5,7 @@
 *.o
 *~
 test
+c_ops
 
 # Python files
 __pycache__/

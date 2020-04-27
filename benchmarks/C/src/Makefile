@@ -19,7 +19,7 @@ test: $(OBJ)
 .PHONY: clean run
 
 clean:
-	rm -f $(ODIR)/*.o *~ test
+	rm -f $(ODIR)/*.o *~ a.out test
 
 run:
 	./test

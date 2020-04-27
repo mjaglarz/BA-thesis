@@ -6,7 +6,7 @@ import quicksort
 
 
 def generate_random_numbers_array(size: int):
-    return [randint(0, 32000) for _ in range(0, size)]
+    return [randint(0, 32000) for _ in range(size)]
 
 
 def check_if_array_is_sorted(array: list):

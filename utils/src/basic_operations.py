@@ -1,0 +1,41 @@
+import os
+
+import utils
+
+def run(fd):
+    ntests = 3
+    nincr_small = 1000
+    nincr_big = 10000000
+
+    utils.test_sleep(fd, ntests)
+    utils.test_for_sleep(fd, ntests)
+
+    utils.test_add(fd, ntests, nincr_small)
+    utils.test_add(fd, ntests, nincr_big)
+
+    utils.test_subtract(fd, ntests, nincr_small)
+    utils.test_subtract(fd, ntests, nincr_big)
+
+    utils.test_multiply(fd, ntests, nincr_small)
+    utils.test_multiply(fd, ntests, nincr_big)
+
+    utils.test_divide(fd, ntests, nincr_small)
+    utils.test_divide(fd, ntests, nincr_big)
+
+    utils.test_add_if(fd, ntests, nincr_small)
+    utils.test_add_if(fd, ntests, nincr_big)
+
+    utils.test_subtract_if(fd, ntests, nincr_small)
+    utils.test_subtract_if(fd, ntests, nincr_big)
+
+    utils.test_multiply_if(fd, ntests, nincr_small)
+    utils.test_multiply_if(fd, ntests, nincr_big)
+
+    utils.test_divide_if(fd, ntests, nincr_small)
+    utils.test_divide_if(fd, ntests, nincr_big)
+
+
+if __name__ == "__main__":
+    path = utils.chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/utils/src') + '/results/basic_operations_python.txt'
+    with open(path, 'w') as fd:
+        run(fd)
