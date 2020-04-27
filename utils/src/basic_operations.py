@@ -2,10 +2,13 @@ import os
 
 import utils
 
+
 def run(fd):
     ntests = 3
     nincr_small = 1000
     nincr_big = 10000000
+
+    fd.write('Python\n\n')
 
     utils.test_sleep(fd, ntests)
     utils.test_for_sleep(fd, ntests)
@@ -36,6 +39,7 @@ def run(fd):
 
 
 if __name__ == "__main__":
-    path = utils.chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/utils/src') + '/results/basic_operations_python.txt'
+    file_name = '/results/basic_operations_python.txt'
+    path = utils.chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/utils/src') + file_name
     with open(path, 'w') as fd:
         run(fd)
