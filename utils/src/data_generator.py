@@ -3,7 +3,6 @@ import sys
 
 import utils
 
-
 def create_file_for_integers(size, start, end):
     path = utils.chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/src') + '/data/integers.txt'
     with open(path, 'w') as fd:

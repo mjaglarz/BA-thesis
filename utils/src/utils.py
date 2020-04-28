@@ -3,7 +3,6 @@ from timeit import default_timer as timer  # On Python 3.3+ default_timer is tim
 
 import numpy.random as np
 
-
 def chop_suffix_from_path(path, suffix):
     if suffix and path.endswith(suffix):
         return path[:-len(suffix)]
@@ -85,7 +84,6 @@ def test_divide(fd, ntests, nincr):
         elapsed_time = end - start
         fd.write(f'For {nincr} divide {initial_value} by 1.01: {elapsed_time}\n')
     fd.write('\n')
-
 
 
 def test_add_if(fd, ntests, nincr):
