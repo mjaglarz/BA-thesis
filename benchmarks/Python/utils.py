@@ -3,7 +3,6 @@ from timeit import default_timer as timer  # On Python 3.3+ default_timer is tim
 
 import fibonacci
 import quicksort
-import utils
 
 
 def chop_suffix_from_path(path, suffix):
@@ -34,7 +33,7 @@ def test_fibonacci(ntests):
     assert(fibonacci.fib(fibarg) == 6765)
 
     file_name = '/results/python_fibonacci_benchmark.txt'
-    path = utils.chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python') + file_name
+    path = chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python') + file_name
     with open(path, 'w') as fd:
         for _ in range(ntests):
             start = timer()
@@ -48,15 +47,15 @@ def test_fibonacci(ntests):
 def test_quicksort(ntests):
     arraysize = 1000000
     file_name = '/utils/data/integers.txt'
-    path = utils.chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python') + file_name
+    path = chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python') + file_name
     with open(path, 'r') as fdread:
         test_array = fdread.readlines()
         quicksort.quicksort(test_array, 0, arraysize - 1)
-        assert(utils.check_if_array_is_sorted(test_array))
+        assert(check_if_array_is_sorted(test_array))
         del test_array
 
         file_name = '/results/python_quicksort_benchmark.txt'
-        path = utils.chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python') + file_name
+        path = chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python') + file_name
         with open(path, 'w') as fdwrite:
             for _ in range(ntests):
                 fdread.seek(0)
