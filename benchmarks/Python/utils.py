@@ -49,7 +49,7 @@ def test_quicksort(ntests):
     file_name = '/utils/data/integers.txt'
     path = chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python') + file_name
     with open(path, 'r') as fdread:
-        test_array = fdread.readlines()
+        test_array = [int(i) for i in fdread.readlines()]
         quicksort.quicksort(test_array, 0, arraysize - 1)
         assert(check_if_array_is_sorted(test_array))
         del test_array
@@ -59,7 +59,7 @@ def test_quicksort(ntests):
         with open(path, 'w') as fdwrite:
             for _ in range(ntests):
                 fdread.seek(0)
-                array = fdread.readlines()
+                array = [int(i) for i in fdread.readlines()]
                 start = timer()
                 quicksort.quicksort(array, 0, arraysize - 1)
                 end = timer()
