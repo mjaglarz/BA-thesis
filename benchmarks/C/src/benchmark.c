@@ -1,17 +1,17 @@
 #include <assert.h>
+#include <limits.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include <limits.h>
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 
-#include "utils.h"
 #include "fibonacci.h"
 #include "quicksort.h"
+#include "utils.h"
 
-#define NTESTS 3
+#define NTESTS 100
 #define ARRAYSIZE 1000000
 
 
@@ -23,6 +23,7 @@ int main() {
     char write_path[PATH_MAX];
     char base_path[PATH_MAX];
 
+    set_paths(base_path, read_path, write_path);
     getcwd(base_path, sizeof(base_path));
     base_path[strrchr(base_path, '/') - base_path] = '\0';
     base_path[strrchr(base_path, '/') - base_path] = '\0';
@@ -33,7 +34,8 @@ int main() {
     strcat(write_path, "results/c_fibonacci_benchmark.txt");
 
     struct timespec start, end;
-    volatile int fibarg = 20; // Each volatile variable read has a corresponding memory access.
+    volatile int fibarg =
+        20; // Each volatile variable read has a corresponding memory access.
 
     fdwrite = fopen(write_path, "w");
 
@@ -49,7 +51,7 @@ int main() {
     }
 
     fclose(fdwrite);
-    
+
     // Test quicksort function
     write_path[strrchr(write_path, '/') - write_path + 1] = '\0';
     strcat(write_path, "c_quicksort_benchmark.txt");
@@ -64,7 +66,7 @@ int main() {
     quicksort(test_array, 0, ARRAYSIZE - 1);
     assert(check_if_array_is_sorted(test_array));
     memset(test_array, 0, ARRAYSIZE * sizeof(*test_array));
-   
+
     for (int i = 0; i < NTESTS; ++i) {
         rewind(fdread);
         for (int i = 0; i < ARRAYSIZE; i++) {
