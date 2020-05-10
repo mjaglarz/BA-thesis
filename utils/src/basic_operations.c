@@ -47,7 +47,7 @@ int main() {
     getcwd(path, sizeof(path));
     path[strrchr(path, '/') - path] = '\0';
     path[strrchr(path, '/') - path + 1] = '\0';
-    strcat(path, "results/basic_operations_c.txt");
+    strcat(path, "results/c_basic_operations.txt");
 
     fd = fopen(path, "w");
     run(fd);

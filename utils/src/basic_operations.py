@@ -38,7 +38,7 @@ def run(fd):
 
 
 if __name__ == "__main__":
-    file_name = '/results/basic_operations_python.txt'
+    file_name = '/results/python_basic_operations.txt'
     path = utils.chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/utils/src') + file_name
     with open(path, 'w') as fd:
         run(fd)
