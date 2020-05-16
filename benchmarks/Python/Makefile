@@ -4,7 +4,7 @@ fib:
 quick:
 	python3 benchmark.py 2 100
 
-matrix:
+matmul:
 	python3 benchmark.py 3 100
 
 all:
