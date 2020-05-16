@@ -1,10 +1,11 @@
 import os
 from timeit import default_timer as timer  # On Python 3.3+ default_timer is time.perf_counter() on all platforms.
+
 import numpy as np
 
 import fibonacci
-import quicksort
 import matrix_multiplication as matmul
+import quicksort
 
 
 def chop_suffix_from_path(path, suffix):
