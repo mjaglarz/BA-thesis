@@ -1,9 +1,11 @@
 #include <assert.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 
 #include "fibonacci.h"
 #include "quicksort.h"
+#include "matrix_multiplication.h"
 #include "utils.h"
 
 #define ARRAYSIZE 1000000

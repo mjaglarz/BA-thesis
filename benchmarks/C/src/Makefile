@@ -4,10 +4,10 @@ CFLAGS = -O0 -Wall -I$(IDIR)
 
 ODIR = ../obj
 
-_DEPS = fibonacci.h quicksort.h utils.h
+_DEPS = fibonacci.h quicksort.h matrix_multiplication.h utils.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = fibonacci.o quicksort.o utils.o benchmark.o 
+_OBJ = fibonacci.o quicksort.o utils.o matrix_multiplication.o benchmark.o 
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.c $(DEPS)
