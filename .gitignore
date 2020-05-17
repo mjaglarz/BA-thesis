@@ -1,7 +1,8 @@
 # C files
 *.o
 *~
-test
+a.out
+run
 c_ops
 
 # Python files

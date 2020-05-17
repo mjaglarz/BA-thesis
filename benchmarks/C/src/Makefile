@@ -13,22 +13,22 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-test: $(OBJ)
+run: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
 
 .PHONY: clean run
 
 clean:
-	rm -f $(ODIR)/*.o *~ a.out test
+	rm -f $(ODIR)/*.o *~ a.out run
 
 fib:
-	./test 1 100
+	./run 1 100
 
 quick:
-	./test 2 100
+	./run 2 100
 
 matmul:
-	./test 3 100
+	./run 3 100
 
 all:
-	./test 4 100
+	./run 4 100
