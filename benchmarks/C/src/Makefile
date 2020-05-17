@@ -21,5 +21,14 @@ test: $(OBJ)
 clean:
 	rm -f $(ODIR)/*.o *~ a.out test
 
-run:
-	./test
+fib:
+	./test 1 100
+
+quick:
+	./test 2 100
+
+matmul:
+	./test 3 100
+
+all:
+	./test 4 100

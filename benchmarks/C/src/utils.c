@@ -1,5 +1,7 @@
 #include <assert.h>
+#include <limits.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -8,7 +10,7 @@
 #include "quicksort.h"
 #include "utils.h"
 
-#define ARRAYSIZE 1000000
+#define ASIZE 1000000
 
 double get_elapsed_time(struct timespec *start, struct timespec *end) {
     double delta_s = end->tv_sec - start->tv_sec;
@@ -21,7 +23,7 @@ int compare(const void *x, const void *y) {
 }
 
 bool check_if_array_is_sorted(int *array) {
-    for (int i = 0; i < ARRAYSIZE - 1; ++i) {
+    for (int i = 0; i < ASIZE - 1; ++i) {
         if (array[i] > array[i + 1]) {
             return false;
         }
@@ -40,9 +42,15 @@ bool check_if_arrays_are_equal(size_t size, int A[size][size],
     return true;
 }
 
-void test_fibonacci(FILE *fdwrite, int ntests) {
+void test_fibonacci(char path[], int ntests) {
+    FILE *fdwrite;
+    char write_path[PATH_MAX] = {0};
     struct timespec start, end;
     volatile int fibarg = 20;
+
+    strcat(write_path, path);
+    strcat(write_path, "/results/fibonacci/c_fibonacci_benchmark.txt");
+    fdwrite = fopen(write_path, "w");
 
     assert(fib(fibarg) == 6765);
 
@@ -53,50 +61,78 @@ void test_fibonacci(FILE *fdwrite, int ntests) {
 
         fprintf(fdwrite, "%f\n", get_elapsed_time(&start, &end));
     }
+
+    fclose(fdwrite);
 }
 
-void test_quicksort(FILE *fdwrite, FILE *fdread, int ntests) {
+void test_quicksort(char path[], int ntests) {
+    FILE *fdread, *fdwrite;
+    char write_path[PATH_MAX] = {0};
+    char read_path[PATH_MAX] = {0};
     struct timespec start, end;
 
-    int *test_array = malloc(ARRAYSIZE * sizeof(int));
-    for (int i = 0; i < ARRAYSIZE; ++i) {
+    strcat(write_path, path);
+    strcat(write_path, "/results/quicksort/c_quicksort_benchmark.txt");
+    fdwrite = fopen(write_path, "w");
+
+    strcat(read_path, path);
+    strcat(read_path, "/utils/data/integers.txt");
+    fdread = fopen(read_path, "r");
+
+    int *test_array = malloc(ASIZE * sizeof(int));
+    for (int i = 0; i < ASIZE; ++i) {
         fscanf(fdread, "%d", &test_array[i]);
     }
 
-    quicksort(test_array, 0, ARRAYSIZE - 1);
+    quicksort(test_array, 0, ASIZE - 1);
     assert(check_if_array_is_sorted(test_array));
 
-    memset(test_array, 0, ARRAYSIZE * sizeof(*test_array));
+    memset(test_array, 0, ASIZE * sizeof(*test_array));
 
     for (int i = 0; i < ntests; ++i) {
         rewind(fdread);
-        for (int i = 0; i < ARRAYSIZE; ++i) {
+        for (int i = 0; i < ASIZE; ++i) {
             fscanf(fdread, "%d", &test_array[i]);
         }
 
         clock_gettime(CLOCK_MONOTONIC, &start);
-        quicksort(test_array, 0, ARRAYSIZE - 1);
+        quicksort(test_array, 0, ASIZE - 1);
         clock_gettime(CLOCK_MONOTONIC, &end);
 
-        memset(test_array, 0, ARRAYSIZE * sizeof(*test_array));
+        memset(test_array, 0, ASIZE * sizeof(*test_array));
 
         fprintf(fdwrite, "%f\n", get_elapsed_time(&start, &end));
     }
+
+    fclose(fdread);
+    fclose(fdwrite);
 }
 
-void test_matrix_multiplication(FILE *fdwrite, FILE *fdread, int ntests) {
+void test_matrix_multiplication(char path[], int ntests) {
+    FILE *fdread, *fdwrite;
+    char write_path[PATH_MAX] = {0};
+    char read_path[PATH_MAX] = {0};
     struct timespec start, end;
+    int A[MSIZE][MSIZE], R[MSIZE][MSIZE], test_array[MSIZE][MSIZE];
 
-    int A[MSIZE][MSIZE], B[MSIZE][MSIZE], R[MSIZE][MSIZE],
-        test_array[MSIZE][MSIZE];
+    strcat(write_path, path);
+    strcat(
+        write_path,
+        "/results/matrix_multiplication/c_matrix_multiplication_benchmark.txt");
+    fdwrite = fopen(write_path, "w");
+
+    strcat(read_path, path);
+    strcat(read_path, "/utils/data/matmul_assert.txt");
+    fdread = fopen(read_path, "r");
+
     for (int i = 0; i < MSIZE; ++i) {
         for (int j = 0; j < MSIZE; ++j) {
-            A[i][j] = B[i][j] = j;
+            A[i][j] = j;
             R[i][j] = 0;
         }
     }
 
-    matmul(A, B, R);
+    matmul(A, A, R);
 
     for (int i = 0; i < MSIZE; ++i) {
         for (int j = 0; j < MSIZE; ++j) {
@@ -114,9 +150,12 @@ void test_matrix_multiplication(FILE *fdwrite, FILE *fdread, int ntests) {
         }
 
         clock_gettime(CLOCK_MONOTONIC, &start);
-        matmul(A, B, R);
+        matmul(A, A, R);
         clock_gettime(CLOCK_MONOTONIC, &end);
 
         fprintf(fdwrite, "%f\n", get_elapsed_time(&start, &end));
     }
+
+    fclose(fdread);
+    fclose(fdwrite);
 }
