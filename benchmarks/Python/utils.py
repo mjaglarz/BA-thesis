@@ -81,9 +81,11 @@ def test_matrix_multiplication(ntests):
 
     A = B = [[row for row in range(matrix_size)] for col in range(matrix_size)]
     R = [[0] * matrix_size for _ in range(matrix_size)]
-    C = np.matrix(matmul.matmul(A, B, R))
+    matmul.matmul(A, B, R)
+    C = np.matrix(R)
     D = np.loadtxt(read_path)
     assert(C.all() == D.all())
+    del C, D
 
     with open(write_path, 'w') as fd:
         for _ in range(ntests):
