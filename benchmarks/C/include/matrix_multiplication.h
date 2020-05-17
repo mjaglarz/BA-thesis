@@ -1,5 +1,5 @@
 #pragma once
 
-#define N 200
+#define MSIZE 200
 
-void matmul(int A[][N], int B[][N], int R[][N]);
+void matmul(int A[][MSIZE], int B[][MSIZE], int R[][MSIZE]);

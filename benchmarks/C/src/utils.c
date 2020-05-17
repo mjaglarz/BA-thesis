@@ -29,7 +29,8 @@ bool check_if_array_is_sorted(int *array) {
     return true;
 }
 
-bool check_if_arrays_are_equal(size_t size, int A[size][size], int B[size][size]) {
+bool check_if_arrays_are_equal(size_t size, int A[size][size],
+                               int B[size][size]) {
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size; ++j) {
             if (A[i][j] != B[i][j])
@@ -86,30 +87,32 @@ void test_quicksort(FILE *fdwrite, FILE *fdread, int ntests) {
 void test_matrix_multiplication(FILE *fdwrite, FILE *fdread, int ntests) {
     struct timespec start, end;
 
-    int A[N][N], B[N][N], R[N][N];
-
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < N; ++j) {
+    int A[MSIZE][MSIZE], B[MSIZE][MSIZE], R[MSIZE][MSIZE],
+        test_array[MSIZE][MSIZE];
+    for (int i = 0; i < MSIZE; ++i) {
+        for (int j = 0; j < MSIZE; ++j) {
             A[i][j] = B[i][j] = j;
             R[i][j] = 0;
         }
     }
+
     matmul(A, B, R);
-    int test_array[N][N];
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < N; ++j) {
+
+    for (int i = 0; i < MSIZE; ++i) {
+        for (int j = 0; j < MSIZE; ++j) {
             fscanf(fdread, "%d", &test_array[i][j]);
         }
     }
 
-    assert(check_if_arrays_are_equal(N, R, test_array));
+    assert(check_if_arrays_are_equal(MSIZE, R, test_array));
 
     for (int i = 0; i < ntests; ++i) {
-        for (int j = 0; j < N; ++j) {
-            for (int k = 0; k < N; ++k) {
+        for (int j = 0; j < MSIZE; ++j) {
+            for (int k = 0; k < MSIZE; ++k) {
                 R[j][k] = 0;
             }
         }
+
         clock_gettime(CLOCK_MONOTONIC, &start);
         matmul(A, B, R);
         clock_gettime(CLOCK_MONOTONIC, &end);
