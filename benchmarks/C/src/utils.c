@@ -113,7 +113,7 @@ void test_matrix_multiplication(char path[], int ntests) {
     char write_path[PATH_MAX] = {0};
     char read_path[PATH_MAX] = {0};
     struct timespec start, end;
-    int A[MSIZE][MSIZE], R[MSIZE][MSIZE], test_array[MSIZE][MSIZE];
+    int A[MSIZE][MSIZE], R[MSIZE][MSIZE], C[MSIZE][MSIZE];
 
     strcat(write_path, path);
     strcat(
@@ -136,11 +136,11 @@ void test_matrix_multiplication(char path[], int ntests) {
 
     for (int i = 0; i < MSIZE; ++i) {
         for (int j = 0; j < MSIZE; ++j) {
-            fscanf(fdread, "%d", &test_array[i][j]);
+            fscanf(fdread, "%d", &C[i][j]);
         }
     }
 
-    assert(check_if_arrays_are_equal(MSIZE, R, test_array));
+    assert(check_if_arrays_are_equal(MSIZE, R, C));
 
     for (int i = 0; i < ntests; ++i) {
         for (int j = 0; j < MSIZE; ++j) {

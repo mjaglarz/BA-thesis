@@ -82,10 +82,10 @@ def test_matrix_multiplication(ntests):
     A = B = [[row for row in range(matrix_size)] for col in range(matrix_size)]
     R = [[0] * matrix_size for _ in range(matrix_size)]
     matmul.matmul(A, B, R)
-    C = np.matrix(R)
-    D = np.loadtxt(read_path)
-    assert(C.all() == D.all())
-    del C, D
+    R = np.matrix(R)
+    C = np.loadtxt(read_path)
+    assert(R.all() == C.all())
+    del R, C
 
     with open(write_path, 'w') as fd:
         for _ in range(ntests):
@@ -93,6 +93,7 @@ def test_matrix_multiplication(ntests):
             start = timer()
             matmul.matmul(A, B, R)
             end = timer()
+            del R
 
             time = end - start
             fd.write(f'{time}\n')
