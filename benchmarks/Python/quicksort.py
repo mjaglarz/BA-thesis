@@ -20,4 +20,3 @@ def quicksort(A, lo, hi):
 
         lo = i
         j = hi
-    return A
