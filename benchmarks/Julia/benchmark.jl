@@ -1,11 +1,15 @@
-include("fibonacci.jl")
-include("quicksort.jl")
+include("utils.jl")
 
-using Printf
+ntests = 3
 
-println(fib(20))
+base_path = chop_suffix_from_path(pwd(), "/benchmarks/Julia")
+path = string(base_path, "/results/fibonacci/julia_fibonacci_benchmark.txt")
 
-a = [3, 4, 2, 6 ,2]
+@assert fib(20) == 6765
 
-quicksort(a, 1, length(a))
-println(a)
+open(path, "w") do io
+    for _ in 0:ntests
+        time = @elapsed fib(20)
+        write(io, string(time, "\n"))
+    end
+end;

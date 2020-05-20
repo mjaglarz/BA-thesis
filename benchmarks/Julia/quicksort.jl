@@ -1,15 +1,15 @@
-function quicksort(A, lo, hi)
+function quicksort!(A, lo, hi)
     i = lo
     j = hi
     while i < hi
         pivot = A[(lo + hi) >>> 1]
         while i <= j
-            while A[i] < pivot; 
-                i += 1; 
+            while A[i] < pivot
+                i += 1
             end
 
-            while A[j] > pivot; 
-                j -= 1; 
+            while A[j] > pivot
+                j -= 1
             end
 
             if i <= j
@@ -18,8 +18,8 @@ function quicksort(A, lo, hi)
             end
         end
 
-        if lo < j; 
-            quicksort(A,lo,j);
+        if lo < j
+            quicksort!(A,lo,j)
         end
 
         lo = i
