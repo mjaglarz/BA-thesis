@@ -45,7 +45,7 @@ def test_fibonacci(ntests):
             end = timer()
 
             time = end - start
-            fd.write(f'{time}\n')
+            fd.write(f'{time:.6f}\n')
 
 
 def test_quicksort(ntests):
@@ -70,7 +70,7 @@ def test_quicksort(ntests):
                 del array
                 
                 time = end - start
-                fdwrite.write(f'{time}\n')
+                fdwrite.write(f'{time:.6f}\n')
 
 
 def test_matrix_multiplication(ntests):
@@ -96,7 +96,7 @@ def test_matrix_multiplication(ntests):
             del R
 
             time = end - start
-            fd.write(f'{time}\n')
+            fd.write(f'{time:.6f}\n')
 
 
 def test_all(ntests):

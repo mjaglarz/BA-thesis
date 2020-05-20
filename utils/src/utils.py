@@ -24,7 +24,7 @@ def test_sleep(fd, ntests):
         end = timer()
         elapsed_time = end - start
         print(f'Sleep(100): {elapsed_time}\n')
-        fd.write(f'A\t{elapsed_time}\n')
+        fd.write(f'A\t{elapsed_time:.6f}\n')
     fd.write('\n')
 
 
@@ -36,7 +36,7 @@ def test_for_sleep(fd, ntests):
         end = timer()
         elapsed_time = end - start
         print(f'For 100 times sleep(1): {elapsed_time}\n')
-        fd.write(f'B\t{elapsed_time}\n')
+        fd.write(f'B\t{elapsed_time:.6f}\n')
     fd.write('\n')
 
 
@@ -49,7 +49,7 @@ def test_add(fd, ntests, nincr):
         end = timer()
         elapsed_time = end - start
         print(f'For {nincr} add 1 to {initial_value}: {elapsed_time}\n')
-        fd.write(f'C\t{elapsed_time}\n')
+        fd.write(f'C\t{elapsed_time:.6f}\n')
     fd.write('\n')
 
 
@@ -63,7 +63,7 @@ def test_add_if(fd, ntests, nincr):
         end = timer()
         elapsed_time = end - start
         print(f'For {nincr} add 1 to {initial_value}: {elapsed_time}\n')
-        fd.write(f'D\t{elapsed_time}\n')
+        fd.write(f'D\t{elapsed_time:.6f}\n')
     fd.write('\n')
 
 
@@ -76,7 +76,7 @@ def test_subtract(fd, ntests, nincr):
         end = timer()
         elapsed_time = end - start
         print(f'For {nincr} subtract 1 from {initial_value}: {elapsed_time}\n')
-        fd.write(f'E\t{elapsed_time}\n')
+        fd.write(f'E\t{elapsed_time:.6f}\n')
     fd.write('\n')
 
 
@@ -90,7 +90,7 @@ def test_subtract_if(fd, ntests, nincr):
         end = timer()
         elapsed_time = end - start
         print(f'For {nincr} subtract 1 from {initial_value}: {elapsed_time}\n')
-        fd.write(f'F\t{elapsed_time}\n')
+        fd.write(f'F\t{elapsed_time:.6f}\n')
     fd.write('\n')
 
 
@@ -103,7 +103,7 @@ def test_multiply(fd, ntests, nincr):
         end = timer()
         elapsed_time = end - start
         print(f'For {nincr} multiply {initial_value} by 1.01: {elapsed_time}\n')
-        fd.write(f'G\t{elapsed_time}\n')
+        fd.write(f'G\t{elapsed_time:.6f}\n')
     fd.write('\n')
 
 
@@ -117,7 +117,7 @@ def test_multiply_if(fd, ntests, nincr):
         end = timer()
         elapsed_time = end - start
         print(f'For {nincr} multiply {initial_value} by 1.01: {elapsed_time}\n')
-        fd.write(f'H\t{elapsed_time}\n')
+        fd.write(f'H\t{elapsed_time:.6f}\n')
     fd.write('\n')
 
 
@@ -130,7 +130,7 @@ def test_divide(fd, ntests, nincr):
         end = timer()
         elapsed_time = end - start
         print(f'For {nincr} divide {initial_value} by 1.01: {elapsed_time}\n')
-        fd.write(f'I\t{elapsed_time}\n')
+        fd.write(f'I\t{elapsed_time:.6f}\n')
     fd.write('\n')
 
 
@@ -144,5 +144,5 @@ def test_divide_if(fd, ntests, nincr):
         end = timer()
         elapsed_time = end - start
         print(f'For {nincr} divide {initial_value} by 1.01: {elapsed_time}\n')
-        fd.write(f'J\t{elapsed_time}\n')
+        fd.write(f'J\t{elapsed_time:.6f}\n')
     fd.write('\n')
