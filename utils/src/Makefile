@@ -28,5 +28,8 @@ integers:
 floats:
 	python3 data_generator.py floats
 
+bench_ops:
+	python3 benchmark_operations.py 
+
 clean:
 	rm -r -f __pycache__ $(ODIR)/*.o *~ a.out c_ops
