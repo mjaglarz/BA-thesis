@@ -1,10 +1,10 @@
 import os
 from timeit import default_timer as timer  # On Python 3.3+ default_timer is time.perf_counter() on all platforms.
 
-import numpy as np
+import numpy
 
 import fibonacci
-import matrix_multiplication as matmul
+import matrix_multiplication
 import quicksort
 
 
@@ -81,9 +81,9 @@ def test_matrix_multiplication(ntests):
 
     A = B = [[row for row in range(matrix_size)] for col in range(matrix_size)]
     R = [[0] * matrix_size for _ in range(matrix_size)]
-    matmul.matmul(A, B, R)
-    R = np.matrix(R)
-    C = np.loadtxt(read_path)
+    matrix_multiplication.matmul(A, B, R)
+    R = numpy.matrix(R)
+    C = numpy.loadtxt(read_path)
     assert(R.all() == C.all())
     del R, C
 
@@ -91,7 +91,7 @@ def test_matrix_multiplication(ntests):
         for _ in range(ntests):
             R = [[0] * matrix_size for _ in range(matrix_size)]
             start = timer()
-            matmul.matmul(A, B, R)
+            matrix_multiplication.matmul(A, B, R)
             end = timer()
             del R
 

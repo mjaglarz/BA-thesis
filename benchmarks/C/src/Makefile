@@ -16,10 +16,7 @@ $(ODIR)/%.o: %.c $(DEPS)
 run: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
 
-.PHONY: clean run
-
-clean:
-	rm -f $(ODIR)/*.o *~ a.out run
+.PHONY: run clean
 
 fib:
 	./run 1 100
@@ -32,3 +29,6 @@ matmul:
 
 all:
 	./run 4 100
+
+clean:
+	rm -f $(ODIR)/*.o *~ a.out run
