@@ -2,13 +2,12 @@ import os
 
 import utils
 
-if_ops = 0
-subtract_ops = 0
-add_ops = 0
-divide_ops = 0
+
+if_ops, add_ops, subtract_ops, multiply_ops, divide_ops = 0, 0, 0, 0, 0
+
 
 def fib(n):
-    global if_ops, subtract_ops, add_ops
+    global if_ops, add_ops, subtract_ops
     if_ops += 1
     if n < 2:
         return n
@@ -16,8 +15,9 @@ def fib(n):
     add_ops += 1
     return fib(n-1) + fib(n-2)
 
+
 def quicksort(A, lo, hi):
-    global if_ops, subtract_ops, add_ops, divide_ops
+    global if_ops, add_ops, subtract_ops, divide_ops
     i = lo
     j = hi
     if_ops += 1
@@ -38,6 +38,7 @@ def quicksort(A, lo, hi):
             if_ops += 1
             while A[j] > pivot:
                 if_ops += 1
+                subtract_ops += 1
                 j -= 1
 
             if_ops += 1
@@ -55,9 +56,24 @@ def quicksort(A, lo, hi):
         lo = i
         j = hi
 
+
+def matmul(A, B, R):
+    global if_ops, add_ops, multiply_ops
+    if_ops += 3
+    for i in range(len(A)):
+        if_ops += 1
+        for j in range(len(B[0])):
+            if_ops += 1
+            for k in range(len(B)):
+                if_ops += 1
+                add_ops += 1
+                multiply_ops += 1
+                R[i][j] += A[i][k] * B[k][j]
+
+
 if __name__ == "__main__":
     fib(20)
-    print(f'If: {if_ops}, Subtract: {subtract_ops}, Add: {add_ops}.')
+    print(f'Fibonacci:\nIf: {if_ops}, Add: {add_ops}, Subtract: {subtract_ops}.\n')
     if_ops, subtract_ops, add_ops = 0, 0, 0
 
     arraysize = 1000000
@@ -67,5 +83,12 @@ if __name__ == "__main__":
     with open(read_path, 'r') as fdread:
         test_array = [int(i) for i in fdread.readlines()]
         quicksort(test_array, 0, arraysize - 1)
-        print(f'If: {if_ops}, Subtract: {subtract_ops}, Add: {add_ops}, Divide {divide_ops}.')
+        print(f'Quicksort:\nIf: {if_ops}, Add: {add_ops}, Subtract: {subtract_ops}, Divide {divide_ops}.\n')
         del test_array
+    if_ops, add_ops = 0, 0,
+
+    matrix_size = 200
+    A = B = [[row for row in range(matrix_size)] for col in range(matrix_size)]
+    R = [[0] * matrix_size for _ in range(matrix_size)]
+    matmul(A, B, R)
+    print(f'Matrix multiplcation:\nIf: {if_ops}, Add: {add_ops}, Multiply: {multiply_ops}.')
