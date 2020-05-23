@@ -109,7 +109,7 @@ void test_matrix_multiplication(char path[], int ntests) {
     char write_path[PATH_MAX] = {0};
     char read_path[PATH_MAX] = {0};
     struct timespec start, end;
-    int A[MSIZE][MSIZE], R[MSIZE][MSIZE], C[MSIZE][MSIZE];
+    int A[MSIZE][MSIZE], B[MSIZE][MSIZE], R[MSIZE][MSIZE], C[MSIZE][MSIZE];
 
     strcat(write_path, path);
     strcat(
@@ -124,11 +124,12 @@ void test_matrix_multiplication(char path[], int ntests) {
     for (int i = 0; i < MSIZE; ++i) {
         for (int j = 0; j < MSIZE; ++j) {
             A[i][j] = j;
+            B[i][j] = j;
             R[i][j] = 0;
         }
     }
 
-    matmul(A, A, R);
+    matmul(A, B, R);
 
     for (int i = 0; i < MSIZE; ++i) {
         for (int j = 0; j < MSIZE; ++j) {
@@ -146,7 +147,7 @@ void test_matrix_multiplication(char path[], int ntests) {
         }
 
         clock_gettime(CLOCK_MONOTONIC, &start);
-        matmul(A, A, R);
+        matmul(A, B, R);
         clock_gettime(CLOCK_MONOTONIC, &end);
 
         fprintf(fdwrite, "%f\n", get_elapsed_time(&start, &end));
