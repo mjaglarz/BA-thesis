@@ -19,7 +19,7 @@ function quicksort!(A, lo, hi)
         end
 
         if lo < j
-            quicksort!(A,lo,j)
+            quicksort!(A, lo, j)
         end
 
         lo = i
