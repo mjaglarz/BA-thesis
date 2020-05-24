@@ -1,4 +1,5 @@
 using DelimitedFiles
+using Formatting
 
 include("fibonacci.jl")
 include("matrix_multiplication.jl")
@@ -10,6 +11,20 @@ function chop_suffix_from_path(path, suffix)
         return path[1:(end-length(suffix))]
     end
     return path
+end
+
+
+
+function run_test(suite, ntests)
+    if suite == 1
+        test_fibonacci(ntests)
+    elseif suite == 2
+        test_quicksort(ntests)
+    elseif suite == 3
+        test_matrix_multiplication(ntests)
+    elseif suite == 4
+        test_all(ntests)
+    end
 end
 
 
@@ -72,4 +87,11 @@ function test_matrix_multiplication(ntests)
             write(fd, string(fmt(".6f", time), "\n"))
         end
     end
+end
+
+
+function test_all(ntests)
+    test_fibonacci(ntests)
+    test_quicksort(ntests)
+    test_matrix_multiplication(ntests)
 end
