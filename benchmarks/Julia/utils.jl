@@ -1,4 +1,7 @@
+using DelimitedFiles
+
 include("fibonacci.jl")
+include("matrix_multiplication.jl")
 include("quicksort.jl") 
 
 
@@ -44,6 +47,29 @@ function test_quicksort(ntests)
                 time = @elapsed quicksort!(array, 1, arraysize)
                 write(fdwrite, string(fmt(".6f", time), "\n"))
             end
+        end
+    end
+end
+
+
+function test_matrix_multiplication(ntests)
+    matrix_size = 200
+    base_path = chop_suffix_from_path(pwd(), "/benchmarks/Julia")
+    write_path = string(base_path, "/results/matrix_multiplication/julia_matrix_multiplication_benchmark.txt")
+    read_path = string(base_path, "/utils/data/matmul_assert.txt")
+
+    A = B = [col-1 for row in 1:matrix_size, col in 1:matrix_size]
+    R = zeros(Int, matrix_size, matrix_size)
+    matmul!(A, B, R)
+    C = readdlm(read_path, ' ', BigInt, '\n')
+    @assert R == C
+
+    open(write_path, "w") do fd
+        for _ in 1:ntests
+            R = zeros(Int, matrix_size, matrix_size)
+            time = @elapsed matmul!(A, B, R)
+
+            write(fd, string(fmt(".6f", time), "\n"))
         end
     end
 end
