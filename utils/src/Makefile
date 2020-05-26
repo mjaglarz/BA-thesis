@@ -22,6 +22,9 @@ c_ops: $(OBJ)
 py_ops:
 	python3 basic_operations.py
 
+jl_ops:
+	julia basic_operations.jl
+
 integers:
 	python3 data_generator.py integers
 
