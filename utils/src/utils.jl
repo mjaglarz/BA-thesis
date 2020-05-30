@@ -32,9 +32,9 @@ function test_for_sleep(fd, ntests)
 end
 
 
-function test_add(fd, ntests, nincr)
+function test_add(fd, ntests, nincr, val)
     for _ in 1:ntests
-        initial_value = val = 0
+        initial_value = 0
         elapsed_time = @elapsed for _ in 1:nincr
                         val += 1
         end
@@ -45,9 +45,9 @@ function test_add(fd, ntests, nincr)
 end
 
 
-function test_add_if(fd, ntests, nincr)
+function test_add_if(fd, ntests, nincr, val)
     for _ in 1:ntests
-        initial_value = val = 0
+        initial_value = 0
         elapsed_time = @elapsed for i in 1:nincr
                         if i % 2 == 0
                             val += 1
@@ -60,9 +60,9 @@ function test_add_if(fd, ntests, nincr)
 end
 
 
-function test_subtract(fd, ntests, nincr)
+function test_subtract(fd, ntests, nincr, val)
     for _ in 1:ntests
-        initial_value = val = 1000000
+        initial_value = 1000000
         elapsed_time = @elapsed for _ in 1:nincr
                         val -= 1
         end
@@ -73,9 +73,9 @@ function test_subtract(fd, ntests, nincr)
 end
 
 
-function test_subtract_if(fd, ntests, nincr)
+function test_subtract_if(fd, ntests, nincr, val)
     for _ in 1:ntests
-        initial_value = val = 1000000
+        initial_value = 1000000
         elapsed_time = @elapsed for i in 1:nincr
                         if i % 2 == 0
                             val -= 1
@@ -88,9 +88,9 @@ function test_subtract_if(fd, ntests, nincr)
 end
 
 
-function test_multiply(fd, ntests, nincr)
+function test_multiply(fd, ntests, nincr, val)
     for _ in 1:ntests
-        initial_value = val = 1
+        initial_value = 1
         elapsed_time = @elapsed for _ in 1:nincr
                         val *= 1.01
         end
@@ -101,9 +101,9 @@ function test_multiply(fd, ntests, nincr)
 end
 
 
-function test_multiply_if(fd, ntests, nincr)
+function test_multiply_if(fd, ntests, nincr, val)
     for _ in 1:ntests
-        initial_value = val = 1
+        initial_value = 1
         elapsed_time = @elapsed for i in 1:nincr
                         if i % 2 == 0
                             val *= 1.01
@@ -116,9 +116,9 @@ function test_multiply_if(fd, ntests, nincr)
 end
 
 
-function test_divide(fd, ntests, nincr)
+function test_divide(fd, ntests, nincr, val)
     for _ in 1:ntests
-        initial_value = val = 1000000
+        initial_value = 1000000
         elapsed_time = @elapsed for _ in 1:nincr
                         val /= 1.01
         end
@@ -129,9 +129,9 @@ function test_divide(fd, ntests, nincr)
 end
 
 
-function test_divide_if(fd, ntests, nincr)
+function test_divide_if(fd, ntests, nincr, val)
     for _ in 1:ntests
-        initial_value = val = 1000000
+        initial_value = 1000000
         elapsed_time = @elapsed for i in 1:nincr
                         if i % 2 == 0
                             val /= 1.01

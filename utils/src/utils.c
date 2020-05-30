@@ -14,8 +14,8 @@ void test_sleep(FILE *fd, int ntests) {
         clock_gettime(CLOCK_MONOTONIC, &start);
         sleep(100);
         clock_gettime(CLOCK_MONOTONIC, &end);
-        printf("Sleep(100): %f\n", get_elapsed_time(&start, &end));
-        fprintf(fd, "A\t%f\t1\n", get_elapsed_time(&start, &end));
+        printf("Sleep(100): %lf\n", get_elapsed_time(&start, &end));
+        fprintf(fd, "A\t%.6lf\t1\n", get_elapsed_time(&start, &end));
     }
     fprintf(fd, "\n");
 }
@@ -29,31 +29,33 @@ void test_for_sleep(FILE *fd, int ntests) {
             sleep(1);
         }
         clock_gettime(CLOCK_MONOTONIC, &end);
-        printf("For 100 times sleep(1): %f\n", get_elapsed_time(&start, &end));
-        fprintf(fd, "B\t%f\t%d\n", get_elapsed_time(&start, &end), niter);
+        printf("For 100 times sleep(1): %lf\n", get_elapsed_time(&start, &end));
+        fprintf(fd, "B\t%.6lf\t%d\n", get_elapsed_time(&start, &end), niter);
     }
     fprintf(fd, "\n");
 }
 
 void test_add(FILE *fd, int ntests, int nincr) {
     struct timespec start, end;
-    int initial_value = 0, val = 0;
+    int initial_value = 0;
+    volatile int val = 0;
     for (int i = 0; i < ntests; ++i) {
         clock_gettime(CLOCK_MONOTONIC, &start);
         for (int j = 0; j < nincr; ++j) {
             val++;
         }
         clock_gettime(CLOCK_MONOTONIC, &end);
-        printf("For %d add 1 to %d: %f\n", nincr, initial_value,
+        printf("For %d add 1 to %d: %lf\n", nincr, initial_value,
                get_elapsed_time(&start, &end));
-        fprintf(fd, "C\t%f\t%d\n", get_elapsed_time(&start, &end), nincr);
+        fprintf(fd, "C\t%.6lf\t%d\n", get_elapsed_time(&start, &end), nincr);
     }
     fprintf(fd, "\n");
 }
 
 void test_add_if(FILE *fd, int ntests, int nincr) {
     struct timespec start, end;
-    int initial_value = 0, val = 0;
+    int initial_value = 0;
+    volatile int val = 0;
     for (int i = 0; i < ntests; ++i) {
         clock_gettime(CLOCK_MONOTONIC, &start);
         for (int j = 0; j < nincr; ++j) {
@@ -62,32 +64,34 @@ void test_add_if(FILE *fd, int ntests, int nincr) {
             }
         }
         clock_gettime(CLOCK_MONOTONIC, &end);
-        printf("For %d add 1 to %d: %f\n", nincr, initial_value,
+        printf("For %d add 1 to %d: %lf\n", nincr, initial_value,
                get_elapsed_time(&start, &end));
-        fprintf(fd, "D\t%f\t%d\n", get_elapsed_time(&start, &end), nincr);
+        fprintf(fd, "D\t%.6lf\t%d\n", get_elapsed_time(&start, &end), nincr);
     }
     fprintf(fd, "\n");
 }
 
 void test_subtract(FILE *fd, int ntests, int nincr) {
     struct timespec start, end;
-    int initial_value = 1000000, val = 1000000;
+    int initial_value = 1000000;
+    volatile int val = 1000000;
     for (int i = 0; i < ntests; ++i) {
         clock_gettime(CLOCK_MONOTONIC, &start);
         for (int j = 0; j < nincr; ++j) {
             val--;
         }
         clock_gettime(CLOCK_MONOTONIC, &end);
-        printf("For %d subtract 1 from %d: %f\n", nincr, initial_value,
+        printf("For %d subtract 1 from %d: %lf\n", nincr, initial_value,
                get_elapsed_time(&start, &end));
-        fprintf(fd, "E\t%f\t%d\n", get_elapsed_time(&start, &end), nincr);
+        fprintf(fd, "E\t%.6lf\t%d\n", get_elapsed_time(&start, &end), nincr);
     }
     fprintf(fd, "\n");
 }
 
 void test_subtract_if(FILE *fd, int ntests, int nincr) {
     struct timespec start, end;
-    int initial_value = 1000000, val = 1000000;
+    int initial_value = 1000000;
+    volatile int val = 1000000;
     for (int i = 0; i < ntests; ++i) {
         clock_gettime(CLOCK_MONOTONIC, &start);
         for (int j = 0; j < nincr; ++j) {
@@ -96,32 +100,34 @@ void test_subtract_if(FILE *fd, int ntests, int nincr) {
             }
         }
         clock_gettime(CLOCK_MONOTONIC, &end);
-        printf("For %d subtract 1 from %d: %f\n", nincr, initial_value,
+        printf("For %d subtract 1 from %d: %lf\n", nincr, initial_value,
                get_elapsed_time(&start, &end));
-        fprintf(fd, "F\t%f\t%d\n", get_elapsed_time(&start, &end), nincr);
+        fprintf(fd, "F\t%.6lf\t%d\n", get_elapsed_time(&start, &end), nincr);
     }
     fprintf(fd, "\n");
 }
 
 void test_multiply(FILE *fd, int ntests, int nincr) {
     struct timespec start, end;
-    int initial_value = 1, val = 1;
+    int initial_value = 1;
+    volatile int val = 1;
     for (int i = 0; i < ntests; ++i) {
         clock_gettime(CLOCK_MONOTONIC, &start);
         for (int j = 0; j < nincr; ++j) {
             val *= 1.01;
         }
         clock_gettime(CLOCK_MONOTONIC, &end);
-        printf("For %d multiply %d by 1.01: %f\n", nincr, initial_value,
+        printf("For %d multiply %d by 1.01: %lf\n", nincr, initial_value,
                get_elapsed_time(&start, &end));
-        fprintf(fd, "G\t%f\t%d\n", get_elapsed_time(&start, &end), nincr);
+        fprintf(fd, "G\t%.6lf\t%d\n", get_elapsed_time(&start, &end), nincr);
     }
     fprintf(fd, "\n");
 }
 
 void test_multiply_if(FILE *fd, int ntests, int nincr) {
     struct timespec start, end;
-    int initial_value = 1, val = 1;
+    int initial_value = 1;
+    volatile int val = 1;
     for (int i = 0; i < ntests; ++i) {
         clock_gettime(CLOCK_MONOTONIC, &start);
         for (int j = 0; j < nincr; ++j) {
@@ -130,32 +136,34 @@ void test_multiply_if(FILE *fd, int ntests, int nincr) {
             }
         }
         clock_gettime(CLOCK_MONOTONIC, &end);
-        printf("For %d multiply %d by 1.01: %f\n", nincr, initial_value,
+        printf("For %d multiply %d by 1.01: %lf\n", nincr, initial_value,
                get_elapsed_time(&start, &end));
-        fprintf(fd, "H\t%f\t%d\n", get_elapsed_time(&start, &end), nincr);
+        fprintf(fd, "H\t%.6lf\t%d\n", get_elapsed_time(&start, &end), nincr);
     }
     fprintf(fd, "\n");
 }
 
 void test_divide(FILE *fd, int ntests, int nincr) {
     struct timespec start, end;
-    int initial_value = 1000000, val = 1000000;
+    int initial_value = 1000000;
+    volatile int val = 1000000;
     for (int i = 0; i < ntests; ++i) {
         clock_gettime(CLOCK_MONOTONIC, &start);
         for (int j = 0; j < nincr; ++j) {
             val /= 1.01;
         }
         clock_gettime(CLOCK_MONOTONIC, &end);
-        printf("For %d divide %d by 1.01: %f\n", nincr, initial_value,
+        printf("For %d divide %d by 1.01: %lf\n", nincr, initial_value,
                get_elapsed_time(&start, &end));
-        fprintf(fd, "I\t%f\t%d\n", get_elapsed_time(&start, &end), nincr);
+        fprintf(fd, "I\t%.6lf\t%d\n", get_elapsed_time(&start, &end), nincr);
     }
     fprintf(fd, "\n");
 }
 
 void test_divide_if(FILE *fd, int ntests, int nincr) {
     struct timespec start, end;
-    int initial_value = 1000000, val = 1000000;
+    int initial_value = 1000000;
+    volatile int val = 1000000;
     for (int i = 0; i < ntests; ++i) {
         clock_gettime(CLOCK_MONOTONIC, &start);
         for (int j = 0; j < nincr; ++j) {
@@ -164,9 +172,9 @@ void test_divide_if(FILE *fd, int ntests, int nincr) {
             }
         }
         clock_gettime(CLOCK_MONOTONIC, &end);
-        printf("For %d divide %d by 1.01: %f\n", nincr, initial_value,
+        printf("For %d divide %d by 1.01: %lf\n", nincr, initial_value,
                get_elapsed_time(&start, &end));
-        fprintf(fd, "J\t%f\t%d\n", get_elapsed_time(&start, &end), nincr);
+        fprintf(fd, "J\t%.6lf\t%d\n", get_elapsed_time(&start, &end), nincr);
     }
     fprintf(fd, "\n");
 }
