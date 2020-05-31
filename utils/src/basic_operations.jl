@@ -1,6 +1,6 @@
 include("utils.jl")
 
-function run(fd val1, val2, val3)
+function run(fd, val1, val2, val3)
     ntests = 3
     nincr_small = 1000
     nincr_big = 10000000
@@ -37,5 +37,5 @@ end
 file_name = "/results/basic_operations/julia_basic_operations.txt"
 path = string(chop_suffix_from_path(pwd(), "/utils/src"), file_name)
 open(path, "w") do fd
-    run(fd, parse(Int, ARGS[1]), parse(Int, ARGS[2]), parse(Int, ARGS[3])
+    run(fd, parse(Int, ARGS[1]), parse(Int, ARGS[2]), parse(Int, ARGS[3]))
 end
