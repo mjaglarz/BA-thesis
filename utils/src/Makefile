@@ -23,7 +23,7 @@ py_ops:
 	python3 basic_operations.py
 
 jl_ops:
-	julia basic_operations.jl 0 1000000 1
+	julia basic_operations.jl
 
 integers:
 	python3 data_generator.py integers

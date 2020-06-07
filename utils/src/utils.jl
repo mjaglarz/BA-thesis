@@ -32,11 +32,11 @@ function test_for_sleep(fd, ntests)
 end
 
 
-function test_add(fd, ntests, nincr, val)
+function test_add(fd, ntests, nincr)
     for _ in 1:ntests
-        initial_value = 0
+        initial_value, val = 0, 0
         elapsed_time = @elapsed for _ in 1:nincr
-                        val += 1
+                        val += 1.0
         end
         println("For $nincr add 1 to $initial_value: $elapsed_time")
         write(fd, string("C\t", fmt(".6f", elapsed_time), "\t$nincr\n"))
@@ -45,12 +45,12 @@ function test_add(fd, ntests, nincr, val)
 end
 
 
-function test_add_if(fd, ntests, nincr, val)
+function test_add_if(fd, ntests, nincr)
     for _ in 1:ntests
-        initial_value = 0
+        initial_value, val = 0, 0
         elapsed_time = @elapsed for i in 1:nincr
                         if i % 2 == 0
-                            val += 1
+                            val += 1.0
                         end
         end
         println("For $nincr add 1 to $initial_value: $elapsed_time")
@@ -60,11 +60,11 @@ function test_add_if(fd, ntests, nincr, val)
 end
 
 
-function test_subtract(fd, ntests, nincr, val)
+function test_subtract(fd, ntests, nincr)
     for _ in 1:ntests
-        initial_value = 1000000
+        initial_value, val = 1000000, 1000000
         elapsed_time = @elapsed for _ in 1:nincr
-                        val -= 1
+                        val -= 1.0
         end
         println("For $nincr subtract 1 from $initial_value: $elapsed_time")
         write(fd, string("E\t", fmt(".6f", elapsed_time), "\t$nincr\n"))
@@ -73,12 +73,12 @@ function test_subtract(fd, ntests, nincr, val)
 end
 
 
-function test_subtract_if(fd, ntests, nincr, val)
+function test_subtract_if(fd, ntests, nincr)
     for _ in 1:ntests
-        initial_value = 1000000
+        initial_value, val = 1000000, 1000000
         elapsed_time = @elapsed for i in 1:nincr
                         if i % 2 == 0
-                            val -= 1
+                            val -= 1.0
                         end
         end
         println("For $nincr subtract 1 from $initial_value: $elapsed_time")
@@ -88,9 +88,9 @@ function test_subtract_if(fd, ntests, nincr, val)
 end
 
 
-function test_multiply(fd, ntests, nincr, val)
+function test_multiply(fd, ntests, nincr)
     for _ in 1:ntests
-        initial_value = 1
+        initial_value, val = 1, 1
         elapsed_time = @elapsed for _ in 1:nincr
                         val *= 1.01
         end
@@ -101,9 +101,9 @@ function test_multiply(fd, ntests, nincr, val)
 end
 
 
-function test_multiply_if(fd, ntests, nincr, val)
+function test_multiply_if(fd, ntests, nincr)
     for _ in 1:ntests
-        initial_value = 1
+        initial_value, val = 1, 1
         elapsed_time = @elapsed for i in 1:nincr
                         if i % 2 == 0
                             val *= 1.01
@@ -116,9 +116,9 @@ function test_multiply_if(fd, ntests, nincr, val)
 end
 
 
-function test_divide(fd, ntests, nincr, val)
+function test_divide(fd, ntests, nincr)
     for _ in 1:ntests
-        initial_value = 1000000
+        initial_value, val = 1000000, 1000000
         elapsed_time = @elapsed for _ in 1:nincr
                         val /= 1.01
         end
@@ -129,9 +129,9 @@ function test_divide(fd, ntests, nincr, val)
 end
 
 
-function test_divide_if(fd, ntests, nincr, val)
+function test_divide_if(fd, ntests, nincr)
     for _ in 1:ntests
-        initial_value = 1000000
+        initial_value, val = 1000000, 1000000
         elapsed_time = @elapsed for i in 1:nincr
                         if i % 2 == 0
                             val /= 1.01

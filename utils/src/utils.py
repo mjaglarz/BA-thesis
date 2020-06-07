@@ -46,7 +46,7 @@ def test_add(fd, ntests, nincr):
         initial_value = val = 0
         start = timer()
         for _ in range(nincr):
-            val += 1
+            val += 1.0
         end = timer()
         elapsed_time = end - start
         print(f'For {nincr} add 1 to {initial_value}: {elapsed_time}')
@@ -60,7 +60,7 @@ def test_add_if(fd, ntests, nincr):
         start = timer()
         for i in range(nincr):
             if i % 2 == 0:
-                val += 1
+                val += 1.0
         end = timer()
         elapsed_time = end - start
         print(f'For {nincr} add 1 to {initial_value}: {elapsed_time}')
@@ -73,7 +73,7 @@ def test_subtract(fd, ntests, nincr):
         initial_value = val = 1000000
         start = timer()
         for _ in range(nincr):
-            val -= 1
+            val -= 1.0
         end = timer()
         elapsed_time = end - start
         print(f'For {nincr} subtract 1 from {initial_value}: {elapsed_time}')
@@ -87,7 +87,7 @@ def test_subtract_if(fd, ntests, nincr):
         start = timer()
         for i in range(nincr):
             if i % 2 == 0:
-                val -= 1
+                val -= 1.0
         end = timer()
         elapsed_time = end - start
         print(f'For {nincr} subtract 1 from {initial_value}: {elapsed_time}')

@@ -42,7 +42,7 @@ void test_add(FILE *fd, int ntests, int nincr) {
     for (int i = 0; i < ntests; ++i) {
         clock_gettime(CLOCK_MONOTONIC, &start);
         for (int j = 0; j < nincr; ++j) {
-            val++;
+            val += 1.0;
         }
         clock_gettime(CLOCK_MONOTONIC, &end);
         printf("For %d add 1 to %d: %lf\n", nincr, initial_value,
@@ -60,7 +60,7 @@ void test_add_if(FILE *fd, int ntests, int nincr) {
         clock_gettime(CLOCK_MONOTONIC, &start);
         for (int j = 0; j < nincr; ++j) {
             if (j % 2 == 0) {
-                val++;
+                val += 1.0;
             }
         }
         clock_gettime(CLOCK_MONOTONIC, &end);
@@ -78,7 +78,7 @@ void test_subtract(FILE *fd, int ntests, int nincr) {
     for (int i = 0; i < ntests; ++i) {
         clock_gettime(CLOCK_MONOTONIC, &start);
         for (int j = 0; j < nincr; ++j) {
-            val--;
+            val -= 1.0;
         }
         clock_gettime(CLOCK_MONOTONIC, &end);
         printf("For %d subtract 1 from %d: %lf\n", nincr, initial_value,
@@ -96,7 +96,7 @@ void test_subtract_if(FILE *fd, int ntests, int nincr) {
         clock_gettime(CLOCK_MONOTONIC, &start);
         for (int j = 0; j < nincr; ++j) {
             if (j % 2 == 0) {
-                val--;
+                val -= 1.0;
             }
         }
         clock_gettime(CLOCK_MONOTONIC, &end);
