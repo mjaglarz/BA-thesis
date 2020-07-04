@@ -1,5 +1,5 @@
 from time import sleep
-from timeit import perf_counter_ns as timer
+from timeit import perf_counter as timer
 
 import numpy.random as np
 
