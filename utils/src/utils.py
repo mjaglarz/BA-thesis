@@ -1,5 +1,5 @@
 from time import sleep
-from timeit import default_timer as timer  # On Python 3.3+ default_timer is time.perf_counter() on all platforms.
+from timeit import perf_counter_ns as timer
 
 import numpy.random as np
 
