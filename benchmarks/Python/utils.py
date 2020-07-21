@@ -1,5 +1,5 @@
 import os
-from timeit import default_timer as timer  # On Python 3.3+ default_timer is time.perf_counter() on all platforms.
+from time import perf_counter
 
 import numpy
 
@@ -40,9 +40,9 @@ def test_fibonacci(ntests):
 
     with open(path, 'w') as fd:
         for _ in range(ntests):
-            start = timer()
+            start = perf_counter()
             fibonacci.fib(fibarg)
-            end = timer()
+            end = perf_counter()
 
             time = end - start
             fd.write(f'{time:.6f}\n')
@@ -64,9 +64,9 @@ def test_quicksort(ntests):
             for _ in range(ntests):
                 fdread.seek(0)
                 array = [int(i) for i in fdread.readlines()]
-                start = timer()
+                start = perf_counter()
                 quicksort.quicksort(array, 0, arraysize - 1)
-                end = timer()
+                end = perf_counter()
                 del array
                 
                 time = end - start
@@ -90,9 +90,9 @@ def test_matrix_multiplication(ntests):
     with open(write_path, 'w') as fd:
         for _ in range(ntests):
             R = [[0] * matrix_size for _ in range(matrix_size)]
-            start = timer()
+            start = perf_counter()
             matrix_multiplication.matmul(A, B, R)
-            end = timer()
+            end = perf_counter()
             del R
 
             time = end - start
