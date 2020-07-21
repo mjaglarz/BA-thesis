@@ -11,8 +11,7 @@ def generate_results_path(func, lang):
 def find_average_time(path, func, lang):
     with open(path, 'r') as fd:
         array = [float(i) for i in fd.readlines()]
-        array.sort()
-        print(f'{lang.capitalize()} {func.replace("_", " ")} average result: {array[len(array) // 2]:.6f}s.')
+        print(f'{lang.capitalize()} {func.replace("_", " ")} best result: {max(array):.6f}s.')
 
 
 if __name__ == "__main__":
