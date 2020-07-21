@@ -34,8 +34,8 @@ floats:
 bench_ops:
 	python3 benchmark_operations.py 
 
-avg_ops:
-	python3 find_average_time.py
+best_ops:
+	python3 find_best_time.py
 
 clean:
 	rm -r -f __pycache__ $(ODIR)/*.o *~ a.out c_ops
