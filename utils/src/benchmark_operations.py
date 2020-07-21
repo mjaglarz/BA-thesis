@@ -3,11 +3,12 @@ import os
 import utils
 
 
-if_ops, add_ops, subtract_ops, multiply_ops, divide_ops = 0, 0, 0, 0, 0
-
+if_ops, add_ops, subtract_ops, multiply_ops, divide_ops, rec_call = 0, 0, 0, 0, 0, 0
+rec_call = 0
 
 def fib(n):
-    global if_ops, add_ops, subtract_ops
+    global if_ops, add_ops, subtract_ops, rec_call
+    rec_call +=1
     if_ops += 1
     if n < 2:
         return n
@@ -73,7 +74,7 @@ def matmul(A, B, R):
 
 if __name__ == "__main__":
     fib(20)
-    print(f'Fibonacci:\nIf: {if_ops}, Add: {add_ops}, Subtract: {subtract_ops}.\n')
+    print(f'Fibonacci:\nIf: {if_ops}, Add: {add_ops}, Subtract: {subtract_ops}. Recursive calls {rec_call}.\n')
     if_ops, subtract_ops, add_ops = 0, 0, 0
 
     arraysize = 1000000
