@@ -19,5 +19,5 @@ if __name__ == "__main__":
     funcs = ['fibonacci', 'quicksort', 'matrix_multiplication']
 
     for f in funcs:
-        for l in langs:
-            find_average_time(generate_results_path(f, l), f, l)
+        for t in tools:
+            find_average_time(generate_results_path(f, t), f, t)
