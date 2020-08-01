@@ -34,7 +34,7 @@ def run_test(suite, ntests):
 def test_fibonacci(ntests):
     fibarg = 20
     base_path = chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python++/Cython')
-    path = base_path + '/results/fibonacci/cython_python_fibonacci_benchmark.txt'
+    path = base_path + '/results/fibonacci/cython_fibonacci_benchmark.txt'
 
     assert(fibonacci.fib(fibarg) == 6765)
 
@@ -59,7 +59,7 @@ def test_quicksort(ntests):
         assert(check_if_array_is_sorted(test_array))
         del test_array
 
-        write_path = base_path + '/results/quicksort/cython_python_quicksort_benchmark.txt'
+        write_path = base_path + '/results/quicksort/cython_quicksort_benchmark.txt'
         with open(write_path, 'w') as fdwrite:
             for _ in range(ntests):
                 fdread.seek(0)
@@ -76,7 +76,7 @@ def test_quicksort(ntests):
 def test_matrix_multiplication(ntests):
     matrix_size = 200
     base_path = chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python++/Cython')
-    write_path = base_path + '/results/matrix_multiplication/cython_python_matrix_multiplication_benchmark.txt'
+    write_path = base_path + '/results/matrix_multiplication/cython_matrix_multiplication_benchmark.txt'
     read_path = base_path + '/utils/data/matmul_assert.txt'
 
     A = B = [[row for row in range(matrix_size)] for col in range(matrix_size)]

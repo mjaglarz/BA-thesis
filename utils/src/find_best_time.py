@@ -15,7 +15,7 @@ def find_average_time(path, func, lang):
 
 
 if __name__ == "__main__":
-    langs = ['c', 'julia', 'python']
+    tools = ['c', 'julia', 'python', 'cython']
     funcs = ['fibonacci', 'quicksort', 'matrix_multiplication']
 
     for f in funcs:
