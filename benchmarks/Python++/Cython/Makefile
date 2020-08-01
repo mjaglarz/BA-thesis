@@ -11,4 +11,4 @@ all:
 	python3 benchmark.py 4 100
 
 clean:
-	rm -r -f __pycache__
+	rm -r -f __pycache__ *.so
