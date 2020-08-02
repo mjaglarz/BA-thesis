@@ -1,5 +1,5 @@
 cpdef quicksort(list A, int lo, int hi):
-    cdef int i, j, pivot
+    cdef int i, j
     i = lo
     j = hi
     while i < hi:
