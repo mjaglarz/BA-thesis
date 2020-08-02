@@ -33,7 +33,7 @@ def run_test(suite, ntests):
 
 def test_fibonacci(ntests):
     fibarg = 20
-    base_path = chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python++/static_Cython')
+    base_path = chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python++/staticCython')
     path = base_path + '/results/fibonacci/static_fibonacci_benchmark.txt'
 
     assert(fibonacci.fib(fibarg) == 6765)
@@ -50,7 +50,7 @@ def test_fibonacci(ntests):
 
 def test_quicksort(ntests):
     arraysize = 1000000
-    base_path = chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python++/static_Cython')
+    base_path = chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python++/staticCython')
     read_path = base_path + '/utils/data/integers.txt'
 
     with open(read_path, 'r') as fdread:
@@ -75,7 +75,7 @@ def test_quicksort(ntests):
 
 def test_matrix_multiplication(ntests):
     matrix_size = 200
-    base_path = chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python++/static_Cython')
+    base_path = chop_suffix_from_path(os.path.dirname(os.path.abspath(__file__)), '/benchmarks/Python++/staticCython')
     write_path = base_path + '/results/matrix_multiplication/static_matrix_multiplication_benchmark.txt'
     read_path = base_path + '/utils/data/matmul_assert.txt'
 

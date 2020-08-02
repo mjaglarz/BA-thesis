@@ -1,4 +1,4 @@
-def quicksort(A, lo, hi):
+cpdef quicksort(list A, int lo, int hi):
     cdef int i, j, pivot
     i = lo
     j = hi
