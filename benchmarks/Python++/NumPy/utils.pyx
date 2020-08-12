@@ -34,18 +34,20 @@ def test_quicksort(ntests):
     read_path = base_path + '/utils/data/integers.txt'
 
     with open(read_path, 'r') as fdread:
-        test_array = numpy.loadtxt(read_path, dtype=int)
+        test_array = [int(i) for i in fdread.readlines()]
+        test_array = numpy.array(test_array)
         quicksort.quicksort(test_array, 0, arraysize - 1)
-        assert(check_if_array_is_sorted(test_array))
+        assert(numpy.all(test_array[:-1] <= test_array[1:]))
         del test_array
 
         write_path = base_path + '/results/quicksort/numpy_quicksort_benchmark.txt'
         with open(write_path, 'w') as fdwrite:
             for _ in range(ntests):
                 fdread.seek(0)
-                array = numpy.loadtxt(read_path, dtype=int)
+                array = [int(i) for i in fdread.readlines()]
+                array = numpy.array(array)
                 start = perf_counter()
-                # quicksort.quicksort(array, 0, arraysize - 1)
+                quicksort.quicksort(array, 0, arraysize - 1)
                 numpy.sort(array, kind='quicksort')
                 end = perf_counter()
                 del array

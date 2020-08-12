@@ -1,3 +1,6 @@
+import pyximport
+pyximport.install(language_level=3, inplace=True)
+
 import sys
 
 import utils

@@ -1,5 +1,5 @@
-cpdef void quicksort(list A, int lo, int hi):
-    cdef int i, j
+cpdef void quicksort(list A, long lo, long hi):
+    cdef long i, j
     i = lo
     j = hi
     while i < hi:

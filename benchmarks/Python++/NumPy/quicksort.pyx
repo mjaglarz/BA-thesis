@@ -1,4 +1,5 @@
-def quicksort(A, lo, hi):
+cpdef void quicksort(long[:] A, long lo, long hi):
+    cdef long i, j
     i = lo
     j = hi
     while i < hi:
