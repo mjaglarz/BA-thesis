@@ -48,7 +48,6 @@ def test_quicksort(ntests):
                 array = numpy.array(array)
                 start = perf_counter()
                 quicksort.quicksort(array, 0, arraysize - 1)
-                numpy.sort(array, kind='quicksort')
                 end = perf_counter()
                 del array
                 

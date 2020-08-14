@@ -1,3 +1,7 @@
+import cython
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
 cpdef void quicksort(long[:] A, long lo, long hi):
     cdef long i, j
     i = lo
