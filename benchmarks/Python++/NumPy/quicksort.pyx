@@ -4,6 +4,7 @@ import cython
 @cython.wraparound(False)
 cpdef void quicksort(long[:] A, long lo, long hi):
     cdef long i, j
+    cdef double pivot
     i = lo
     j = hi
     while i < hi:
