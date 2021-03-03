@@ -1,4 +1,3 @@
-# Przegląd narzędzi do zwiększenia wydajności programów w 
 Overview of tools to improve the performance of Python programs
 ================================
 ## ENG Abstract:
